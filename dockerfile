@@ -1,8 +1,15 @@
-FROM python:3
+FROM node:18
 
-WORKDIR ./app
+WORKDIR /app
 
-
+# Copy your HTML file
 COPY . .
 
-CMD [ "python", "./hello.py" ]
+# Install static server globally
+RUN npm install -g http-server
+
+# Expose port
+EXPOSE 3000
+
+# Start server
+CMD ["http-server", ".", "-p", "3000"]
